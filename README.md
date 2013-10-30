@@ -14,7 +14,7 @@ $ mvn -B archetype:generate \
       -DarchetypeGroupId=com.github.markusbernhardt \
       -DarchetypeArtifactId=robotframework-archetype-selenium2library \
       -DarchetypeVersion=1.0.0 \
-      -DgroupId=yourcompany.yourdepartment \
+      -DgroupId=com.yourcompany.yourdepartment \
       -DartifactId=yourproject-yourtestsuite
 
 $ cd yourproject-yourtestsuite
