@@ -21,7 +21,6 @@
 		<downloadSources>true</downloadSources>
 		<downloadJavadocs>true</downloadJavadocs>
 		<java.version>1.7</java.version>
-		<robotframework.version>2.8.1</robotframework.version>
 	</properties>
 
 	<scm>
