@@ -9,7 +9,7 @@
 
 	<groupId>com.github.markusbernhardt</groupId>
 	<artifactId>robotframework-archetype-selenium2library</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>maven-archetype</packaging>
 
 	<name>Archetype - robotframework-archetype-selenium2library</name>
