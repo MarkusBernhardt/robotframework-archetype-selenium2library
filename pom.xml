@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<groupId>com.github.markusbernhardt</groupId>
+	<artifactId>robotframework-archetype-selenium2library</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>maven-archetype</packaging>
+
+	<name>Archetype - robotframework-archetype-selenium2library</name>
+	<description>Robot Framework archetype for creating a testsuite</description>
+	<url>https://github.com/MarkusBernhardt/robotframework-archetype-selenium2library</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<downloadSources>true</downloadSources>
+		<downloadJavadocs>true</downloadJavadocs>
+		<java.version>1.7</java.version>
+		<robotframework.version>2.8.1</robotframework.version>
+	</properties>
+
+	<scm>
+		<url>https://github.com/MarkusBernhardt/robotframework-archetype-selenium2library</url>
+		<connection>scm:git://github.com/MarkusBernhardt/robotframework-archetype-selenium2library.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/MarkusBernhardt/robotframework-archetype-selenium2library.git</developerConnection>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Markus Bernhardt</name>
+			<email>markus.bernhardt@me.com</email>
+		</developer>
+	</developers>
+
+	<build>
+		<extensions>
+			<extension>
+				<!-- Make the maven-archetype packaging known to maven -->
+				<groupId>org.apache.maven.archetype</groupId>
+				<artifactId>archetype-packaging</artifactId>
+				<version>2.2</version>
+			</extension>
+		</extensions>
+
+		<plugins>
+			<plugin>
+				<!-- Set 1.7 as target, use project source encoding -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<!-- Define archetype plugin version -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+				<plugin>
+					<!-- Suppress eclipse warnings -->
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-enforcer-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>enforce</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

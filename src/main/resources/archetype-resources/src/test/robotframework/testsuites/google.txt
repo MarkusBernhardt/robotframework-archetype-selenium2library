@@ -1,0 +1,76 @@
+*** Settings ***
+Suite Setup       Google Open
+Suite Teardown    Google Close
+Test Setup        Google Init
+Library           Selenium2Library
+
+*** Variables ***
+${Google.Url}                            https://www.google.com/?hl=en
+${Google.PageTitle}                      Google
+${Google.Locator.SearchField}            id=gbqfq
+${Google.Locator.SearchResult.Rtomac}    xpath=//cite[contains(., 'https://github.com/rtomac/')]
+${Selenium.Browser.Name}                 firefox
+${Selenium.Browser.Version}              ${EMPTY}
+${Selenium.Grid}                         false
+${Selenium.Host}                         ${EMPTY}
+${Selenium.Port}                         ${EMPTY}
+${Selenium.Timeout}                      30.0
+
+*** Test Cases ***
+Open And Close Google Site
+    Capture Page Screenshot
+    
+Search Robotframework Selenium2Library
+    Google Search    Robotframework Selenium2Library
+    
+Search With JavaScript Locator
+    Selenium2Library.Add Location Strategy    elementById    return window.document.getElementById(arguments[0]);
+    Input Text    elementById=gbqfq    Robotframework Selenium2Library
+    Press Key    elementById=gbqfq    \\13
+    Wait Until Element Is Visible    xpath=//cite[contains(., 'https://github.com/rtomac/')]
+    Capture Page Screenshot
+    
+Search With JavaScript Locator And Delimiter
+    Selenium2Library.Add Location Strategy    elementByClassname    return window.document.getElementsByClassName(arguments[0])[arguments[1]];    ,
+    Element Text Should Be    elementByClassname=gbqfba,0    Google Search
+    Element Text Should Be    elementByClassname=gbqfba,1    I'm Feeling Lucky 
+
+Search With JavaScript Locator Text
+    Selenium2Library.Add Location Strategy    text    return window.document.evaluate("//*[contains(text(),'" + arguments[0] + "')]", window.document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    Wait Until Element Is Visible    text=Google-Suche
+
+Search Without Locator Type
+    Input Text    gbqfq    Robotframework Selenium2Library
+    Press Key    gbqfq    \\13
+    Wait Until Element Is Visible    //cite[contains(., 'https://github.com/rtomac/')]
+    
+Get Id Of Active Element With JavaScript
+    Input Text    gbqfq    Robotframework Selenium2Library
+    ${activeElementId}=    Execute JavaScript    return window.document.activeElement.id;
+
+*** Keywords ***
+Google Open
+    [Arguments]    ${Browser.Alias}=default
+    Run Keyword If    '${Selenium.Grid}'!='true'    Open Browser    ${Google.Url}    ${Selenium.Browser.Name}    ${Browser.Alias}
+    Run Keyword If    '${Selenium.Grid}'=='true'    Open Browser    ${Google.Url}    ${Selenium.Browser.Name}    ${Browser.Alias}    http://${Selenium.Host}:${Selenium.Port}/wd/hub    browserName:${Selenium.Browser.Name},version:${Selenium.Browser.Version}
+    Set Selenium Implicit Wait    ${Selenium.Timeout}
+    Set Selenium Timeout    ${Selenium.Timeout}
+    Google Init
+
+Google Init
+    Delete All Cookies
+    Google Go To
+
+Google Go To
+    ${Current.Location}=    Get Location
+    Run Keyword If    '${Current.Location}'!='${Google.Url}'    Selenium2Library.Go To    ${Google.Url}
+    Title Should Be    ${Google.PageTitle}
+
+Google Close
+    Close Browser
+
+Google Search
+    [Arguments]    ${String}
+    Input Text    ${Google.Locator.SearchField}    ${String}
+    Press Key    ${Google.Locator.SearchField}    \\13
+    Wait Until Element Is Visible    ${Google.Locator.SearchResult.Rtomac}
