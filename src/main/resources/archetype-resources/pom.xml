@@ -12,6 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<robotframework.version>2.8.1</robotframework.version>
+		<robotframework.selenium2library.version>1.2.0.14</robotframework.selenium2library.version>
 	</properties>
 
 	<build>
@@ -39,6 +40,11 @@
 						<groupId>org.robotframework</groupId>
 						<artifactId>robotframework</artifactId>
 						<version>${robotframework.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>com.github.markusbernhardt</groupId>
+						<artifactId>robotframework-selenium2library-java</artifactId>
+						<version>${robotframework.selenium2library.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>

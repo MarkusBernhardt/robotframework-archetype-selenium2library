@@ -37,7 +37,7 @@ Search With JavaScript Locator And Delimiter
 
 Search With JavaScript Locator Text
     Selenium2Library.Add Location Strategy    text    return window.document.evaluate("//*[contains(text(),'" + arguments[0] + "')]", window.document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-    Wait Until Element Is Visible    text=Google-Suche
+    Wait Until Element Is Visible    text=Google Search
 
 Search Without Locator Type
     Input Text    gbqfq    Robotframework Selenium2Library
