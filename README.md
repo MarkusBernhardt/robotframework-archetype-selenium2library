@@ -13,7 +13,7 @@ Usage
 $ mvn -B archetype:generate \
       -DarchetypeGroupId=com.github.markusbernhardt \
       -DarchetypeArtifactId=robotframework-archetype-selenium2library \
-      -DarchetypeVersion=1.0.0 \
+      -DarchetypeVersion=1.0.1 \
       -DgroupId=com.yourcompany.yourdepartment \
       -DartifactId=yourproject-yourtestsuite
 
